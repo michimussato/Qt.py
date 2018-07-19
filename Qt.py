@@ -883,14 +883,14 @@ def _loadUi(uifile, baseinstance=None):
 
                 # For some reason, Line is not in the list of available
                 # widgets, but works fine, so we have to special case it here.
-                if class_name in self.availableWidgets() + ["Line"]:
+                try:
                     # Create a new widget for child widgets
                     widget = Qt._QtUiTools.QUiLoader.createWidget(self,
                                                                   class_name,
                                                                   parent,
                                                                   name)
 
-                else:
+                except Exception:
                     raise Exception("Custom widget '%s' not supported"
                                     % class_name)
 
